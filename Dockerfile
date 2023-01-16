@@ -1,7 +1,7 @@
 FROM alpine:3.7 as builder
 
-ARG TESTSSL_VERSION=2.9.5-5
-ARG TESTSSL_DOWNLOAD_SHA1=c26cdcec97f7ce807eacf355796158fe674bbaf8
+ARG TESTSSL_VERSION=3.0.8
+ARG TESTSSL_DOWNLOAD_SHA1=0d93af482c13c34f4c685b8b1fb366a41210650520995f92a3b9999aa089ed4b
 ENV TESTSSL_DOWNLOAD_URL https://github.com/drwetter/testssl.sh/archive/v${TESTSSL_VERSION}.tar.gz
 
 RUN wget "$TESTSSL_DOWNLOAD_URL" -O testssl.tar.gz
@@ -15,8 +15,7 @@ RUN find /testssl/ -name \*.md -delete
 RUN cd /testssl/bin/ && \
 	rm openssl.Darwin.x86_64 \
 	   openssl.FreeBSD.amd64 \
-	   openssl.Linux.i686 \
-	   openssl.Linux.x86_64.krb5
+	   openssl.Linux.i686 
 
 
 FROM python:3.7-alpine3.7
